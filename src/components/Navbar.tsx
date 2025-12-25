@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,29 +16,62 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const textColor = scrolled ? 'text-slate-700' : 'text-white';
-    const logoColor = scrolled ? 'text-[#0F2C3E]' : 'text-white';
-    const hoverColor = scrolled ? 'hover:text-[#008C9E]' : 'hover:text-[#008C9E]';
+    const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
+        setIsOpen(false);
+
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                const element = document.getElementById(targetId);
+                if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            }, 100);
+        } else {
+            const element = document.getElementById(targetId);
+            if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+    };
+
+    const textColor = scrolled || location.pathname !== '/' ? 'text-slate-700' : 'text-white';
+    const logoColor = scrolled || location.pathname !== '/' ? 'text-[#0F2C3E]' : 'text-white';
+    const hoverColor = scrolled || location.pathname !== '/' ? 'hover:text-[#008C9E]' : 'hover:text-[#008C9E]';
+    const navBackground = scrolled || location.pathname !== '/' ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+        <nav className={`fixed w-full z-50 transition-all duration-300 ${navBackground}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <div className="flex-shrink-0 flex items-center">
+                    <Link to="/" className="flex-shrink-0 flex items-center">
                         <img
                             src="/logos/SVG/Recurso 3logo_norvelm_s.svg"
                             alt="Norvelm Logo"
                             className="h-10 w-auto"
                         />
                         <span className={`ml-2 text-2xl font-bold ${logoColor} tracking-tight`}>Norvelm</span>
-                    </div>
+                    </Link>
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
-                            <a href="#inicio" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Inicio</a>
-                            <a href="#about" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Nosotros</a>
-                            <a href="#servicios" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Fianzas</a>
-                            <a href="#seguros" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Seguros</a>
+                            <Link to="/" onClick={(e) => handleNavigation(e, 'inicio')} className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Inicio</Link>
+                            <Link to="/nosotros" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Nosotros</Link>
+                            <a href="#servicios" onClick={(e) => handleNavigation(e, 'servicios')} className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer`}>Fianzas</a>
+                            <a href="#seguros" onClick={(e) => handleNavigation(e, 'servicios')} className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer`}>Seguros</a>
                             <a href="https://wa.me/529931165496" target='_blank' rel='noopener noreferrer' className="bg-[#008C9E] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#007A8A] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                 Llamar
                             </a>
@@ -56,10 +92,10 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-white shadow-lg absolute w-full top-full left-0">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <a href="#inicio" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Inicio</a>
-                        <a href="#about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Nosotros</a>
-                        <a href="#servicios" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Fianzas</a>
-                        <a href="#seguros" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Seguros</a>
+                        <Link to="/" onClick={(e) => handleNavigation(e, 'inicio')} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Inicio</Link>
+                        <Link to="/nosotros" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Nosotros</Link>
+                        <a href="#servicios" onClick={(e) => handleNavigation(e, 'servicios')} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50 cursor-pointer">Fianzas</a>
+                        <a href="#seguros" onClick={(e) => handleNavigation(e, 'servicios')} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50 cursor-pointer">Seguros</a>
                         <a href="https://wa.me/529931165496" target='_blank' rel='noopener noreferrer' onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[#008C9E] font-bold bg-cyan-50">Llamar</a>
                     </div>
                 </div>
