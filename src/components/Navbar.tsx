@@ -66,7 +66,7 @@ const Navbar = () => {
                                 alt="Norvelm Logo"
                                 className="h-10 w-auto"
                             />
-                            <span className={`ml-2 text-2xl font-bold ${logoColor} tracking-tight`}>Norvelm</span>
+                            <span className={`ml-2 text-2xl font-bold ${logoColor} tracking-tight`}>NORVELM</span>
                         </Link>
 
                         <div className="hidden md:block">
