@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Nosotros from './pages/Nosotros';
+import Contacto from './pages/Contacto';
 
 // Componente para manejar el scroll al cambiar de ruta
 const ScrollToTop = () => {
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
         <Footer />
       </div>

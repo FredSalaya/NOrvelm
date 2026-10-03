@@ -75,7 +75,8 @@ const Navbar = () => {
                                 <Link to="/nosotros" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Nosotros</Link>
                                 <a href="#servicios" onClick={(e) => handleNavigation(e, 'servicios')} className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer`}>Fianzas</a>
                                 <a href="#seguros" onClick={(e) => handleNavigation(e, 'servicios')} className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer`}>Seguros</a>
-                                <a href="https://wa.me/529931165496" target='_blank' rel='noopener noreferrer' className="bg-[#008C9E] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#007A8A] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                <Link to="/contacto" className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-colors`}>Contacto</Link>
+                                <a href="https://wa.me/52931165496" target='_blank' rel='noopener noreferrer' className="bg-[#008C9E] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#007A8A] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                     Llamar
                                 </a>
                             </div>
@@ -99,7 +100,8 @@ const Navbar = () => {
                             <Link to="/nosotros" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Nosotros</Link>
                             <a href="#servicios" onClick={(e) => handleNavigation(e, 'servicios')} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50 cursor-pointer">Fianzas</a>
                             <a href="#seguros" onClick={(e) => handleNavigation(e, 'servicios')} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50 cursor-pointer">Seguros</a>
-                            <a href="https://wa.me/529931165496" target='_blank' rel='noopener noreferrer' onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[#008C9E] font-bold bg-cyan-50">Llamar</a>
+                            <Link to="/contacto" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#008C9E] hover:bg-gray-50">Contacto</Link>
+                            <a href="https://wa.me/52931165496" target='_blank' rel='noopener noreferrer' onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[#008C9E] font-bold bg-cyan-50">Llamar</a>
                         </div>
                     </div>
                 )}

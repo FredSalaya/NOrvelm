@@ -24,7 +24,9 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="text-lg font-medium text-gray-900">Teléfono / WhatsApp</h4>
-                                    <p className="mt-1 text-gray-600">993 116 54 96</p>
+                                    <a href="https://wa.me/52931165496" target="_blank" rel="noopener noreferrer" className="mt-1 text-gray-600 hover:text-blue-600 block">
+                                        931 165 496
+                                    </a>
                                 </div>
                             </div>
 
@@ -36,8 +38,8 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="text-lg font-medium text-gray-900">Email</h4>
-                                    <a href="https://wa.me/529931165496" target="_blank" rel="noopener noreferrer" className="mt-1 text-blue-600 hover:text-blue-800 block">
-                                        ventura.misael@hotmail.com
+                                    <a href="mailto:mventura@norvelm.com" className="mt-1 text-blue-600 hover:text-blue-800 block">
+                                        mventura@norvelm.com
                                     </a>
                                 </div>
                             </div>
